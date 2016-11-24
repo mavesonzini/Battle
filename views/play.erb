@@ -1,9 +1,9 @@
-<h1> <%= @player1 %> vs. <%= @player2 %>! Fight!!! </h1>
+<h1> <%= $player1 %> vs. <%= $player2 %>! Fight!!! </h1>
 
 <h2>
   <form action="/play">
     <input type="submit" value="View player 2's HP"/>
-    <%= session[:player2]%>: 20 HP
+    <%= $player2 %>: 20 HP
   </form>
 
   <form action="/attack">
