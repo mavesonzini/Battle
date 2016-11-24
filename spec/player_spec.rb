@@ -11,15 +11,6 @@ describe Player do
       end
     end
 
-    describe 'attack' do
-      it 'checks player1 responds to attack' do
-        expect(player1).to respond_to(:attack)
-      end
-
-      it 'checks player2 hp reduces by 10 points' do
-        expect{player1.attack(player2)}.to change{player2.hitpoints}.by (-10)
-      end
-    end
 
 
 end
