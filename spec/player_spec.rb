@@ -2,15 +2,23 @@ require 'player'
 
 describe Player do
 
-  subject(:player1) {described_class.new("Malin")}
-  subject(:player2) {described_class.new("Veronica")}
+  subject(:player) {described_class.new}
 
     describe '#name' do
       it "should return player's name" do
-        expect(player1.name).to eq "Malin"
+        expect(player.name).to eq Player::DEFAULT_NAME
       end
     end
 
+    describe '#dead?' do
+      it "should return true if player is dead" do
+        player.reduce_hitpoints(100)
+        expect(player.dead?).to eq true
+      end
 
+      it "should return false if player is alive" do
+        expect(player.dead?).to eq false
+      end
+    end
 
 end

@@ -14,7 +14,7 @@ describe Game do
 
     it "reduces the attacked player's hitpoints by 10" do
       game.attack(player2)
-      expect(player2.to have_received(:reduce_hitpoints).with(10))
+      expect(player2.to have_received(:reduce_hitpoints).with(20))
     end
   end
 
