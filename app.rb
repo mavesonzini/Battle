@@ -5,7 +5,7 @@ require_relative 'lib/game'
 class Battle < Sinatra::Base
   attr_reader :player1, :player2
 
-enable :sessions
+  enable :sessions
 
   get '/' do
     erb(:index)
@@ -21,12 +21,18 @@ enable :sessions
     erb(:play)
   end
 
-   get '/attack' do
-     @game = $game
-     @game.attack(@game.player2)
-
-   erb(:attack)
-   end
+  get '/attack' do
+    @game = $game
+    if @game.turn
+      @player = @game.player2
+      @game.attack(@game.player2)
+    else
+      @player = @game.player1
+      @game.attack(@game.player1)
+    end
+    @game.switch_player
+    erb(:attack)
+  end
 
 
   run! if app_file == $0

@@ -1,7 +1,7 @@
 require './app'
 require 'spec_helper'
 
-RSpec.feature "Attacking player 2", :type => :feature do
+RSpec.feature "Attacking each other", :type => :feature do
   scenario "Confirm attack" do
     sign_in_and_play
     click_button("Attack")
@@ -12,5 +12,13 @@ RSpec.feature "Attacking player 2", :type => :feature do
     sign_in_and_play
     click_button("Attack")
     expect(page).to have_content("Mal's HP is 90")
+  end
+
+  scenario "After attack the turn is switched" do
+    sign_in_and_play
+    click_button("Attack")
+    click_button("Back")
+    click_button("Attack")
+    expect(page).to have_content("George's HP is 90")
   end
 end
