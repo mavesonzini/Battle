@@ -1,5 +1,5 @@
 require 'sinatra/base'
-require 'player'
+require_relative 'lib/player'
 
 class Battle < Sinatra::Base
   attr_reader :player1, :player2
@@ -12,8 +12,8 @@ enable :sessions
 
   post '/names' do
     p params
-    $player1 = params[:player1]
-    $player2 = params[:player2]
+    $player1 = Player.new(params[:player1])
+    $player2 = Player.new(params[:player2])
     redirect to('/play')
   end
 
@@ -26,7 +26,7 @@ enable :sessions
    get '/attack' do
      @player1 = $player1
      @player2 = $player2
-     
+
    erb(:attack)
    end
 
