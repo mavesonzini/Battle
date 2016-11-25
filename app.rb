@@ -7,22 +7,24 @@ class Battle < Sinatra::Base
 
   enable :sessions
 
+  before do
+    @game = Game.instance
+  end
+
   get '/' do
     erb(:index)
   end
 
   post '/names' do
-    @game = Game.start_game(params[:player1], params[:player2])
+    @game = Game.create(params[:player1], params[:player2])
     redirect to('/play')
   end
 
   get '/play' do
-    @game = Game.play
     erb(:play)
   end
 
   get '/attack' do
-    @game = Game.play
     if @game.turn
       @player = @game.player2
       @game.attack(@game.player2)
@@ -36,7 +38,6 @@ class Battle < Sinatra::Base
   end
 
   get '/loose' do
-    @game = Game.play
     @player = @game.player2
     erb(:loose)
   end
