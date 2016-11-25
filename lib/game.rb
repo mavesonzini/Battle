@@ -12,4 +12,11 @@ class Game
     player.reduce_hitpoints(10)
   end
 
+  def player1
+    @players[0]
+  end
+
+  def player2
+    @players[1]
+  end
 end
